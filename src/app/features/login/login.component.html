@@ -1,0 +1,39 @@
+<div class="login-container">
+  <!-- Logo -->
+  <img src="logo.png" alt="Logo">
+
+  <!-- Usuario -->
+  <input
+    type="text"
+    [(ngModel)]="username"
+    placeholder="Usuario"
+    class="input-field"
+  />
+
+  <!-- Contraseña -->
+  <input
+    type="password"
+    [(ngModel)]="password"
+    placeholder="Contraseña"
+    class="input-field"
+  />
+
+  <!-- Mensaje de error -->
+  <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <!-- Botones -->
+  <div class="button-group">
+    <button class="register-btn" (click)="goToRegister()">
+      Registro
+    </button>
+
+    <button
+      class="login-btn"
+      [disabled]="isLoginDisabled"
+      (click)="onLogin()"
+    >
+      <span *ngIf="!isLoading">Login</span>
+      <span *ngIf="isLoading">Cargando...</span>
+    </button>
+  </div>
+</div>

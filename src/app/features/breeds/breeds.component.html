@@ -1,0 +1,94 @@
+<!-- ✅ App Bar (siempre visible arriba) -->
+<div class="app-bar" *ngIf="!isFilterView">
+  <button class="hamburger-btn" (click)="toggleSidebar()">☰</button>
+  <h1>Cat Breeds Explorer</h1>
+</div>
+
+<!-- Vista FILTRO -->
+<div *ngIf="isFilterView" class="filter-view">
+  <h2>Filtrar razas</h2>
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Escribe y presiona Enter"
+    (keydown)="applyFilterOnEnter($event)"
+    autofocus
+  />
+  <!-- ⚠️ Mensaje de error -->
+  <div *ngIf="errorMessage" style="color: red; margin-top: 8px;">
+    {{ errorMessage }}
+  </div>
+
+  <!-- ✅ Botón de volver -->
+  <button class="back-btn" (click)="isFilterView = false">Volver</button>
+</div>
+
+<!-- Vista PRINCIPAL -->
+<div *ngIf="!isFilterView" class="breeds-container">
+  <!-- Barra lateral -->
+  <aside class="sidebar" *ngIf="isSidebarOpen">
+    <button class="close-btn" (click)="toggleSidebar()">✕</button>
+    <button class="filter-btn" (click)="goToFilterView()">🔍 Filtro</button>
+
+    <!-- Botón Guardian (nuevo) -->
+    <button (click)="goToGuardian()">Guardian</button>
+
+    <!-- Al final el botón de cerrar sesión -->
+  <div class="logout-section">
+    <button (click)="logout()">Cerrar sesión</button>
+  </div>
+  </aside>
+
+  <div class="breeds-layout">
+    <!-- Panel izquierdo -->
+    <div class="left-panel">
+      <h2>Select a cat breed</h2>
+      <select [(ngModel)]="selectedBreedId" (change)="onSelectBreed()">
+        <option value="" disabled>-- Selecciona una raza --</option>
+        <option *ngFor="let breed of breeds" [value]="breed.id">
+          {{ breed.name }}
+        </option>
+      </select>
+
+      <div *ngIf="selectedBreed" class="breed-info">
+        <h3>{{ selectedBreed.name }}</h3>
+        <p><strong>Origin:</strong> {{ selectedBreed.origin }}</p>
+        <p><strong>Temper:</strong> {{ selectedBreed.temperament }}</p>
+        <p>{{ selectedBreed.description }}</p>
+
+        <div *ngIf="images.length > 0" class="carousel">
+          <button (click)="prevImage()">⟨</button>
+          <img
+            [src]="images[currentIndex].url"
+            [alt]="selectedBreed.name"
+            class="carousel-image"
+          />
+          <button (click)="nextImage()">⟩</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel derecho -->
+    <div class="right-panel">
+      <h3>Datos relevantes</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Origin</th>
+              <th>Temper</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let breed of filteredBreeds">
+              <td>{{ breed.name }}</td>
+              <td>{{ breed.origin }}</td>
+              <td>{{ breed.temperament }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<!-- ✅ App Bar (siempre visible arriba) -->
+<div class="app-bar">
+  <button class="hamburger-btn" (click)="toggleSidebar()">☰</button>
+  <h1>Cat Breeds Explorer</h1>
+</div>
+
+<!-- Contenedor principal -->
+<div class="breeds-container">
+  <!-- Barra lateral -->
+  <aside class="sidebar" *ngIf="isSidebarOpen">
+    <button class="close-btn" (click)="toggleSidebar()">✕</button>
+
+    <!-- Botón de cerrar sesión -->
+    <div class="logout-section">
+      <button (click)="logout()">Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <!-- Información del usuario -->
+  <div class="p-4">
+    <h2>Información del usuario</h2>
+    <p><strong>Usuario:</strong> {{ user?.username }}</p>
+    <p><strong>Email:</strong> {{ user?.email }}</p>
+
+    <!-- Botón para volver -->
+    <button class="volver-btn" (click)="goToBreeds()">⬅ Volver</button>
+  </div>
+</div>

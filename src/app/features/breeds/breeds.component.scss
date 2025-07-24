@@ -1,0 +1,192 @@
+.breeds-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  padding-top: 60px; /* espacio para el app-bar */
+}
+
+/* ✅ App Bar */
+.app-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #1976d2;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.app-bar h1 {
+  flex: 1;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Botón hamburguesa */
+.hamburger-btn {
+  background: white;
+  color: #1976d2;
+  border: none;
+  padding: 8px 12px;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+.hamburger-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Barra lateral */
+.sidebar {
+  position: fixed;
+  top: 60px; /* debajo del app-bar */
+  left: 0;
+  width: 200px;
+  height: calc(100% - 60px);
+  background: #333;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 60;
+}
+
+.sidebar .close-btn {
+  align-self: flex-end;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.sidebar .filter-btn {
+  background: #1976d2;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.sidebar .filter-btn:hover {
+  background: #145ca8;
+}
+
+.logout-section {
+  margin-top: auto; // para empujarlo al final si usas flex
+  padding: 1rem;
+  button {
+    width: 100%;
+    background-color: #e53935;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    &:hover {
+      background-color: #c62828;
+    }
+  }
+}
+
+
+/* Layout principal */
+.breeds-layout {
+  display: flex;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: auto;
+  gap: 2rem;
+}
+
+.left-panel {
+  flex: 1;
+}
+
+.right-panel {
+  flex: 1;
+}
+
+/* Tabla */
+.table-wrapper {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-wrapper th {
+  background: #f2f2f2;
+}
+
+/* Vista filtro */
+.filter-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f5f5f5;
+  gap: 1rem;
+}
+
+.filter-view input[type="text"] {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 300px;
+}
+
+.back-btn {
+  background: #1976d2;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.back-btn:hover {
+  background: #145ca8;
+}
+
+/* ✅ Ajuste de imágenes del carrusel */
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap; /* por si hay varias imágenes */
+}
+
+.carousel-image {
+  max-width: 220px; /* tamaño más pequeño */
+  max-height: 220px; /* tamaño más pequeño */
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

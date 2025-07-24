@@ -1,0 +1,53 @@
+<div class="register-container">
+  <!-- Logo -->
+  <img src="logo.png" alt="Logo" class="logo" />
+
+  <!-- Usuario -->
+  <input
+    type="text"
+    [(ngModel)]="username"
+    placeholder="Usuario"
+    class="input-field"
+  />
+
+  <!-- Correo -->
+  <input
+    type="email"
+    [(ngModel)]="email"
+    placeholder="Correo"
+    class="input-field"
+  />
+
+  <!-- Contraseña -->
+  <input
+    type="password"
+    [(ngModel)]="password"
+    placeholder="Contraseña"
+    class="input-field"
+  />
+
+  <!-- Confirmar contraseña -->
+  <input
+    type="password"
+    [(ngModel)]="confirmPassword"
+    placeholder="Confirmar contraseña"
+    class="input-field"
+  />
+
+  <!-- Mensaje de error -->
+  <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <!-- Botones -->
+  <div class="button-group">
+    <button class="back-btn" (click)="goToLogin()">Volver al Login</button>
+
+    <button
+      class="register-btn"
+      [disabled]="isRegisterDisabled"
+      (click)="onRegister()"
+    >
+      <span *ngIf="!isLoading">Registrar</span>
+      <span *ngIf="isLoading">Cargando...</span>
+    </button>
+  </div>
+</div>
